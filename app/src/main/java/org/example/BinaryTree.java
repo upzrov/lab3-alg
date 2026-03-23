@@ -31,9 +31,9 @@ public class BinaryTree {
         if (current == null) {
             return new Node(student);
         } else {
-            if (student.Stud_ID < current.data.Stud_ID) {
+            if (student.studentId < current.data.studentId) {
                 current.left = insert(current.left, student);
-            } else if (student.Stud_ID > current.data.Stud_ID) {
+            } else if (student.studentId > current.data.studentId) {
                 current.right = insert(current.right, student);
             }
         }
@@ -61,7 +61,8 @@ public class BinaryTree {
         search(current.left, year, armyService, list);
 
         if (
-            current.data.Year == year && current.data.ArmyService == armyService
+            current.data.year == year &&
+            current.data.servedInArmy == armyService
         ) {
             list.add(current.data);
         }
@@ -78,16 +79,16 @@ public class BinaryTree {
         }
 
         for (Student s : toDelete) {
-            root = deleteNode(root, s.Stud_ID);
+            root = deleteNode(root, s.studentId);
         }
     }
 
     private Node deleteNode(Node current, int id) {
         if (current == null) return null;
 
-        if (id < current.data.Stud_ID) {
+        if (id < current.data.studentId) {
             current.left = deleteNode(current.left, id);
-        } else if (id > current.data.Stud_ID) {
+        } else if (id > current.data.studentId) {
             current.right = deleteNode(current.right, id);
         } else {
             // Node found
